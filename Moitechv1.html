@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 விழா பணத் தொகுப்பு - Event Fund Manager</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        .header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+
+        /* Button Styles */
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #1976D2;
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-left: 4px solid #4CAF50;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            font-size: 2.5em;
+        }
+
+        .stat-info h3 {
+            margin: 0;
+            font-size: 2em;
+            color: #333;
+        }
+
+        .stat-info p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Event Cards */
+        .event-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin: 15px 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .event-info {
+            flex-grow: 1;
+        }
+
+        .event-info h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 1.3em;
+        }
+
+        .event-info p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        /* Participant and Contribution Items */
+        .participant-item, .contribution-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 8px;
+            border-left: 3px solid #2196F3;
+        }
+
+        .contribution-item {
+            border-left-color: #4CAF50;
+        }
+
+        .participant-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .participant-details {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .contribution-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .contribution-amount {
+            font-weight: bold;
+            color: #4CAF50;
+            font-size: 1.1em;
+        }
+
+        .contribution-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .payment-method {
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        /* Progress Section */
+        .progress-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #8BC34A);
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        /* Empty States */
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #ddd;
+        }
+
+        /* Management Sections */
+        .management-section {
+            margin: 25px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .management-section h3 {
+            margin-top: 0;
+            color: #333;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .tab {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab.active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .tab:hover:not(.active) {
+            background: #f0f0f0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .btn-small {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+
+        /* Success Messages */
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* File Input Styling */
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .file-input-wrapper input[type="file"] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .event-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .contribution-details, .contribution-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                text-align: center;
+                margin: 2px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎉 விழா பணத் தொகுப்பு</h1>
+            <p>உங்கள் விழா நிதிகளை எளிதாக நிர்வகிக்கவும்</p>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('events')">📅 விழாக்கள்</div>
+            <div class="tab" onclick="showTab('participants')">👥 பங்கேற்பாளர்கள்</div>
+            <div class="tab" onclick="showTab('contributions')">💰 பங்களிப்புகள்</div>
+            <div class="tab" onclick="showTab('reports')">📊 அறிக்கைகள்</div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📊</div>
+                <div class="stat-info">
+                    <h3 id="totalEvents">0</h3>
+                    <p>மொத்த விழாக்கள்</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <h3 id="totalAmount">₹0</h3>
+                    <p>மொத்த தொகை</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-info">
+                    <h3 id="totalParticipants">0</h3>
+                    <p>மொத்த பங்கேற்பாளர்கள்</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Tab -->
+        <div id="events" class="tab-content active">
+            <div class="card">
+                <h2>📅 புதிய விழாவை உருவாக்கவும்</h2>
+                <div class="form-group">
+                    <input type="text" id="eventName" placeholder="விழா பெயர் (எ.கா: திருமணம்)" class="form-input">
+                    <input type="text" id="eventType" placeholder="விழா வகை" class="form-input">
+                    <input type="date" id="eventDate" class="form-input">
+                    <input type="text" id="eventLocation" placeholder="இடம்" class="form-input">
+                    <input type="number" id="eventTarget" placeholder="இலக்கு தொகை" class="form-input">
+                    <button onclick="createEvent()" class="btn btn-primary">விழாவை உருவாக்கவும்</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>📋 உங்கள் விழாக்கள்</h2>
+                <div id="eventsList">
+                    <div class="empty-state">
+                        <p>இன்னும் விழாக்கள் உருவாக்கப்படவில்லை. முதல் விழாவை மேலே உருவாக்கவும்!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Participants Tab -->
+        <div id="participants" class="tab-content">
+            <div class="card">
+                <h2>👥 பங்கேற்பாளரைச் சேர்க்கவும்</h2>
+                <div class="form-group">
+                    <select id="participantEvent" class="form-input">
+                        <option value="">விழாவைத் தேர்ந்தெடுக்கவும்</option>
+                    </select>
+                    <input type="text" id="participantName" placeholder="முழு பெயர்" class="form-input">
+                    <input type="text" id="participantPhone" placeholder="தொலைபேசி எண்" class="form-input">
+                    <input type="email" id="participantEmail" placeholder="மின்னஞ்சல் (விருப்பம்)" class="form-input">
+                    <input type="text" id="participantPlace" placeholder="பங்கேற்பாளரின் இடம்" class="form-input">
+                    <button onclick="addParticipant()" class="btn btn-primary">பங்கேற்பாளரைச் சேர்க்கவும்</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>பங்கேற்பாளர்கள் பட்டியல்</h2>
+                <div id="participantsList">
+                    <div class="empty-state">
+                        <p>இன்னும் பங்கேற்பாளர்கள் சேர்க்கப்படவில்லை</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contributions Tab -->
+        <div id="contributions" class="tab-content">
+            <div class="card">
+                <h2>💵 பங்களிப்பைப் பதிவு செய்யவும்</h2>
+                <div class="form-group">
+                    <select id="contributionEvent" class="form-input" onchange="updateParticipantDropdown()">
+                        <option value="">விழாவைத் தேர்ந்தெடுக்கவும்</option>
+                    </select>
+                    <select id="contributionParticipant" class="form-input">
+                        <option value="">பங்கேற்பாளரைத் தேர்ந்தெடுக்கவும்</option>
+                    </select>
+                    <input type="number" id="contributionAmount" placeholder="தொகை" class="form-input">
+                    <select id="contributionMethod" class="form-input">
+                        <option value="cash">💵 ரொக்கம்</option>
+                        <option value="digital">📱 டிஜிட்டல்</option>
+                        <option value="bank">🏦 வங்கி</option>
+                    </select>
+                    <input type="text" id="contributionNotes" placeholder="குறிப்புகள் (விருப்பம்)" class="form-input">
+                    <button onclick="addContribution()" class="btn btn-primary">பங்களிப்பைப் பதிவு செய்யவும்</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>சமீபத்திய பங்களிப்புகள்</h2>
+                <div id="contributionsList">
+                    <div class="empty-state">
+                        <p>இன்னும் பங்களிப்புகள் பதிவு செய்யப்படவில்லை</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reports Tab -->
+        <div id="reports" class="tab-content">
+            <!-- Backup Section -->
+            <div class="card">
+                <h2>💾 தரவு காப்புப்பதிவு</h2>
+                <div class="form-group">
+                    <button onclick="exportData()" class="btn btn-primary">📤 தரவை ஏற்றுமதி செய்க</button>
+                    <div class="file-input-wrapper">
+                        <button class="btn btn-secondary">📥 தரவை இறக்குமதி செய்க</button>
+                        <input type="file" id="importFile" accept=".json" onchange="importData(event)">
+                    </div>
+                </div>
+                <p style="color: #666; font-size: 0.9em; margin-top: 10px;">
+                    ⚠️ தரவு உலாவியில் மட்டுமே சேமிக்கப்படுகிறது. காப்புப்பதிவு எடுக்க பரிந்துரைக்கிறோம்.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2>📊 அறிக்கைகள்</h2>
+                <div class="form-group">
+                    <select id="reportEvent" class="form-input" onchange="updateProgress()">
+                        <option value="">அறிக்கைக்கான விழாவைத் தேர்ந்தெடுக்கவும்</option>
+                    </select>
+                    <button onclick="generateEventReport()" class="btn btn-primary">📄 விழா அறிக்கை</button>
+                    <button onclick="generateParticipantList()" class="btn btn-secondary">👥 பங்கேற்பாளர் பட்டியல்</button>
+                    <button onclick="generateContributionReport()" class="btn btn-secondary">💰 பங்களிப்பு அறிக்கை</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>விழா முன்னேற்றம்</h2>
+                <div id="eventProgress">
+                    <div class="empty-state">
+                        <p>முன்னேற்றத்தைக் காண விழாவைத் தேர்ந்தெடுக்கவும்</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Storage
+        let events = [];
+        let participants = [];
+        let contributions = [];
+
+        // Initialize the app when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadData();
+            initApp();
+        });
+
+        function loadData() {
+            // Load data from localStorage
+            const savedEvents = localStorage.getItem('events');
+            const savedParticipants = localStorage.getItem('participants');
+            const savedContributions = localStorage.getItem('contributions');
+
+            if (savedEvents) events = JSON.parse(savedEvents);
+            if (savedParticipants) participants = JSON.parse(savedParticipants);
+            if (savedContributions) contributions = JSON.parse(savedContributions);
+        }
+
+        function saveData() {
+            // Save data to localStorage
+            localStorage.setItem('events', JSON.stringify(events));
+            localStorage.setItem('participants', JSON.stringify(participants));
+            localStorage.setItem('contributions', JSON.stringify(contributions));
+        }
+
+        function initApp() {
+            updateStats();
+            displayEvents();
+            updateEventDropdowns();
+            displayParticipants();
+            displayContributions();
+            updateProgress();
+        }
+
+        // Tab Navigation
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Event Management
+        function createEvent() {
+            const name = document.getElementById('eventName').value;
+            const type = document.getElementById('eventType').value;
+            const date = document.getElementById('eventDate').value;
+            const location = document.getElementById('eventLocation').value;
+            const targetAmount = parseFloat(document.getElementById('eventTarget').value);
+
+            if (!name || !date || !targetAmount) {
+                alert('தயவு செய்து அனைத்து புலங்களையும் நிரப்பவும்');
+                return;
+            }
+
+            const event = {
+                id: Date.now().toString(),
+                name: name,
+                type: type,
+                date: date,
+                location: location,
+                targetAmount: targetAmount,
+                createdAt: new Date().toISOString()
+            };
+
+            events.push(event);
+            saveData();
+            updateStats();
+            displayEvents();
+            updateEventDropdowns();
+            
+            // Clear form
+            document.getElementById('eventName').value = '';
+            document.getElementById('eventType').value = '';
+            document.getElementById('eventDate').value = '';
+            document.getElementById('eventLocation').value = '';
+            document.getElementById('eventTarget').value = '';
+
+            alert('விழா வெற்றிகரமாக உருவாக்கப்பட்டது!');
+        }
+
+        function displayEvents() {
+            const eventsList = document.getElementById('eventsList');
+            
+            if (events.length === 0) {
+                eventsList.innerHTML = '<div class="empty-state"><p>இன்னும் விழாக்கள் உருவாக்கப்படவில்லை. முதல் விழாவை மேலே உருவாக்கவும்!</p></div>';
+                return;
+            }
+
+            eventsList.innerHTML = events.map(event => `
+                <div class="event-card">
+                    <div class="event-info">
+                        <h3>${event.name}</h3>
+                        <p><strong>வகை:</strong> ${event.type || 'N/A'}</p>
+                        <p><strong>தேதி:</strong> ${event.date}</p>
+                        <p><strong>இடம்:</strong> ${event.location || 'N/A'}</p>
+                        <p><strong>இலக்கு:</strong> ₹${event.targetAmount}</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button onclick="selectEvent('${event.id}')" class="btn btn-secondary btn-small">தேர்ந்தெடு</button>
+                        <button onclick="deleteEvent('${event.id}')" class="btn btn-danger btn-small">🗑️ நீக்கு</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteEvent(eventId) {
+            if (confirm('இந்த விழாவை நிச்சயமாக நீக்க வேண்டுமா?')) {
+                events = events.filter(event => event.id !== eventId);
+                participants = participants.filter(participant => participant.eventId !== eventId);
+                contributions = contributions.filter(contribution => contribution.eventId !== eventId);
+                saveData();
+                updateStats();
+                displayEvents();
+                displayParticipants();
+                displayContributions();
+                updateEventDropdowns();
+                alert('விழா நீக்கப்பட்டது!');
+            }
+        }
+
+        // Participant Management
+        function addParticipant() {
+            const eventId = document.getElementById('participantEvent').value;
+            const name = document.getElementById('participantName').value;
+            const phone = document.getElementById('participantPhone').value;
+            const email = document.getElementById('participantEmail').value;
+            const place = document.getElementById('participantPlace').value;
+
+            if (!eventId || !name || !phone) {
+                alert('பங்கேற்பாளர் பெயர், தொலைபேசி எண் மற்றும் விழாவைத் தேர்ந்தெடுக்கவும்');
+                return;
+            }
+
+            const participant = {
+                id: Date.now().toString(),
+                eventId: eventId,
+                name: name,
+                phone: phone,
+                email: email,
+                place: place,
+                createdAt: new Date().toISOString()
+            };
+
+            participants.push(participant);
+            saveData();
+            updateStats();
+            displayParticipants();
+            updateParticipantDropdown();
+            
+            // Clear form
+            document.getElementById('participantName').value = '';
+            document.getElementById('participantPhone').value = '';
+            document.getElementById('participantEmail').value = '';
+            document.getElementById('participantPlace').value = '';
+
+            alert('பங்கேற்பாளர் வெற்றிகரமாக சேர்க்கப்பட்டது!');
+        }
+
+        function displayParticipants() {
+            const participantsList = document.getElementById('participantsList');
+            
+            if (participants.length === 0) {
+                participantsList.innerHTML = '<div class="empty-state"><p>இன்னும் பங்கேற்பாளர்கள் சேர்க்கப்படவில்லை</p></div>';
+                return;
+            }
+
+            participantsList.innerHTML = participants.map(participant => {
+                const event = events.find(e => e.id === participant.eventId);
+                return `
+                    <div class="participant-item">
+                        <div class="participant-name">${participant.name}</div>
+                        <div class="participant-details">
+                            <span>📞 ${participant.phone}</span>
+                            ${participant.email ? ` | 📧 ${participant.email}` : ''}
+                            ${participant.place ? ` | 📍 ${participant.place}` : ''}
+                            ${event ? ` | 🎉 ${event.name}` : ''}
+                        </div>
+                        <div class="action-buttons">
+                            <button onclick="deleteParticipant('${participant.id}')" class="btn btn-danger btn-small">🗑️ நீக்கு</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function deleteParticipant(participantId) {
+            if (confirm('இந்த பங்கேற்பாளரை நிச்சயமாக நீக்க வேண்டுமா?')) {
+                participants = participants.filter(participant => participant.id !== participantId);
+                contributions = contributions.filter(contribution => contribution.participantId !== participantId);
+                saveData();
+                updateStats();
+                displayParticipants();
+                displayContributions();
+                updateParticipantDropdown();
+                alert('பங்கேற்பாளர் நீக்கப்பட்டது!');
+            }
+        }
+
+        // Contribution Management
+        function addContribution() {
+            const eventId = document.getElementById('contributionEvent').value;
+            const participantId = document.getElementById('contributionParticipant').value;
+            const amount = parseFloat(document.getElementById('contributionAmount').value);
+            const paymentMethod = document.getElementById('contributionMethod').value;
+            const notes = document.getElementById('contributionNotes').value;
+
+            if (!eventId || !participantId || !amount) {
+                alert('விழா, பங்கேற்பாளர் மற்றும் தொகையைத் தேர்ந்தெடுக்கவும்');
+                return;
+            }
+
+            const participant = participants.find(p => p.id === participantId);
+            if (!participant) {
+                alert('பங்கேற்பாளர் கிடைக்கவில்லை');
+                return;
+            }
+
+            const contribution = {
+                id: Date.now().toString(),
+                eventId: eventId,
+                participantId: participantId,
+                participantName: participant.name,
+                participantPhone: participant.phone,
+                participantPlace: participant.place,
+                amount: amount,
+                paymentMethod: paymentMethod,
+                notes: notes,
+                date: new Date().toISOString()
+            };
+
+            contributions.push(contribution);
+            saveData();
+            updateStats();
+            displayContributions();
+            updateProgress();
+            
+            // Clear form
+            document.getElementById('contributionAmount').value = '';
+            document.getElementById('contributionNotes').value = '';
+
+            alert('பங்களிப்பு வெற்றிகரமாக பதிவு செய்யப்பட்டது!');
+        }
+
+        function displayContributions() {
+            const contributionsList = document.getElementById('contributionsList');
+            
+            if (contributions.length === 0) {
+                contributionsList.innerHTML = '<div class="empty-state"><p>இன்னும் பங்களிப்புகள் பதிவு செய்யப்படவில்லை</p></div>';
+                return;
+            }
+
+            contributionsList.innerHTML = contributions.map(contribution => {
+                const event = events.find(e => e.id === contribution.eventId);
+                const paymentMethodText = {
+                    'cash': 'ரொக்கம்',
+                    'digital': 'டிஜிட்டல்',
+                    'bank': 'வங்கி'
+                }[contribution.paymentMethod] || contribution.paymentMethod;
+
+                return `
+                    <div class="contribution-item">
+                        <div class="contribution-details">
+                            <strong>${contribution.participantName}</strong>
+                            <span class="contribution-amount">₹${contribution.amount}</span>
+                        </div>
+                        <div class="contribution-meta">
+                            <span class="payment-method">${paymentMethodText}</span>
+                            <small>${new Date(contribution.date).toLocaleDateString('ta-IN')}</small>
+                            ${event ? `<small> | ${event.name}</small>` : ''}
+                        </div>
+                        ${contribution.notes ? `<p><small>குறிப்பு: ${contribution.notes}</small></p>` : ''}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Report Generation
+        function generateEventReport() {
+            const eventId = document.getElementById('reportEvent').value;
+            if (!eventId) {
+                alert('அறிக்கையை உருவாக்க விழாவைத் தேர்ந்தெடுக்கவும்');
+                return;
+            }
+
+            const event = events.find(e => e.id === eventId);
+            if (!event) {
+                alert('விழா கிடைக்கவில்லை');
+                return;
+            }
+
+            const eventParticipants = participants.filter(p => p.eventId === eventId);
+            const eventContributions = contributions.filter(c => c.eventId === eventId);
+            const totalCollected = eventContributions.reduce((sum, c) => sum + c.amount, 0);
+            const progressPercentage = event.targetAmount > 0 ? (totalCollected / event.targetAmount) * 100 : 0;
+
+            const report = `
+விழா அறிக்கை
+
+விழா பெயர்: ${event.name}
+விழா வகை: ${event.type || 'N/A'}
+தேதி: ${event.date}
+இடம்: ${event.location || 'N/A'}
+இலக்கு தொகை: ₹${event.targetAmount}
+திரட்டப்பட்ட தொகை: ₹${totalCollected}
+முன்னேற்றம்: ${progressPercentage.toFixed(1)}%
+
+பங்கேற்பாளர்கள் (${eventParticipants.length}):
+${eventParticipants.map(p => `- ${p.name} | ${p.phone} | ${p.email || '-'} | ${p.place || '-'}`).join('\n')}
+
+பங்களிப்புகள் (${eventContributions.length}):
+${eventContributions.map(c => `- ${c.participantName} | ₹${c.amount} | ${c.paymentMethod} | ${new Date(c.date).toLocaleDateString()}`).join('\n')}
+
+சுருக்கம்:
+மொத்த பங்கேற்பாளர்கள்: ${eventParticipants.length}
+மொத்த பங்களிப்புகள்: ${eventContributions.length}
+மொத்த திரட்டப்பட்ட தொகை: ₹${totalCollected}
+இலக்கை அடைவது: ${progressPercentage.toFixed(1)}%
+            `;
+
+            downloadTextFile(report, `${event.name}_அறிக்கை.txt`);
+        }
+
+        function generateParticipantList() {
+            const eventId = document.getElementById('reportEvent').value;
+            const eventParticipants = eventId ? 
+                participants.filter(p => p.eventId === eventId) : 
+                participants;
+
+            if (eventParticipants.length === 0) {
+                alert('பதிவிறக்க பங்கேற்பாளர்கள் இல்லை');
+                return;
+            }
+
+            const event = events.find(e => e.id === eventId);
+            const content = `
+${event ? `${event.name} - பங்கேற்பாளர்கள்` : 'அனைத்து பங்கேற்பாளர்கள்'}
+
+${eventParticipants.map(p => `- ${p.name} | ${p.phone} | ${p.email || '-'} | ${p.place || '-'}`).join('\n')}
+
+மொத்த பங்கேற்பாளர்கள்: ${eventParticipants.length}
+            `;
+
+            downloadTextFile(content, 'பங்கேற்பாளர்கள்_பட்டியல்.txt');
+        }
+
+        function generateContributionReport() {
+            const eventId = document.getElementById('reportEvent').value;
+            const eventContributions = eventId ? 
+                contributions.filter(c => c.eventId === eventId) : 
+                contributions;
+
+            if (eventContributions.length === 0) {
+                alert('பதிவிறக்க பங்களிப்புகள் இல்லை');
+                return;
+            }
+
+            const totalAmount = eventContributions.reduce((sum, c) => sum + c.amount, 0);
+            const event = events.find(e => e.id === eventId);
+
+            const content = `
+${event ? `${event.name} - பங்களிப்புகள்` : 'அனைத்து பங்களிப்புகள்'}
+
+${eventContributions.map(c => `- ${c.participantName} | ₹${c.amount} | ${c.paymentMethod} | ${new Date(c.date).toLocaleDateString()}`).join('\n')}
+
+மொத்த பங்களிப்புகள்: ${eventContributions.length}
+மொத்த தொகை: ₹${totalAmount}
+            `;
+
+            downloadTextFile(content, 'பங்களிப்புகள்_அறிக்கை.txt');
+        }
+
+        function updateProgress() {
+            const eventProgress = document.getElementById('eventProgress');
+            if (!eventProgress) return;
+
+            const eventId = document.getElementById('reportEvent').value;
+
+            if (!eventId) {
+                eventProgress.innerHTML = '<div class="empty-state"><p>முன்னேற்றத்தைக் காண விழாவைத் தேர்ந்தெடுக்கவும்</p></div>';
+                return;
+            }
+
+            const event = events.find(e => e.id === eventId);
+            if (!event) return;
+
+            const eventContributions = contributions.filter(c => c.eventId === eventId);
+            const totalCollected = eventContributions.reduce((sum, c) => sum + c.amount, 0);
+            const progressPercentage = event.targetAmount > 0 ? Math.min((totalCollected / event.targetAmount) * 100, 100) : 0;
+
+            eventProgress.innerHTML = `
+                <div class="progress-section">
+                    <h3>${event.name} - தொகுப்பு முன்னேற்றம்</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: ${progressPercentage}%"></div>
+                    </div>
+                    <p class="progress-text">
+                        ₹${totalCollected} / ₹${event.targetAmount} (${progressPercentage.toFixed(1)}%)
+                    </p>
+                    <p class="progress-text">
+                        <strong>திரட்டப்பட்டது:</strong> ₹${totalCollected} | 
+                        <strong>மீதம்:</strong> ₹${Math.max(event.targetAmount - totalCollected, 0)}
+                    </p>
+                </div>
+            `;
+        }
+
+        // Backup and Restore Functions
+        function exportData() {
+            const data = {
+                events: events,
+                participants: participants,
+                contributions: contributions,
+                exportDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `event-fund-backup-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            alert('தரவு வெற்றிகரமாக ஏற்றுமதி செய்யப்பட்டது!');
+        }
+
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    
+                    if (confirm('தற்போதைய தரவு மேலெழுதப்படும். தொடரவும்?')) {
+                        events = data.events || [];
+                        participants = data.participants || [];
+                        contributions = data.contributions || [];
+                        
+                        saveData();
+                        initApp();
+                        alert('தரவு வெற்றிகரமாக இறக்குமதி செய்யப்பட்டது!');
+                    }
+                } catch (error) {
+                    alert('தவறான கோப்பு வடிவம்!');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // Utility Functions
+        function updateStats() {
+            const totalEventsEl = document.getElementById('totalEvents');
+            const totalParticipantsEl = document.getElementById('totalParticipants');
+            const totalAmountEl = document.getElementById('totalAmount');
+
+            if (totalEventsEl) totalEventsEl.textContent = events.length;
+            if (totalParticipantsEl) totalParticipantsEl.textContent = participants.length;
+            
+            const totalAmount = contributions.reduce((sum, c) => sum + c.amount, 0);
+            if (totalAmountEl) totalAmountEl.textContent = `₹${totalAmount}`;
+        }
+
+        function updateEventDropdowns() {
+            const eventOptions = events.map(event => 
+                `<option value="${event.id}">${event.name}</option>`
+            ).join('');
+
+            const eventSelects = ['participantEvent', 'contributionEvent', 'reportEvent'];
+            eventSelects.forEach(selectId => {
+                const select = document.getElementById(selectId);
+                if (select) {
+                    select.innerHTML = '<option value="">விழாவைத் தேர்ந்தெடுக்கவும்</option>' + eventOptions;
+                }
+            });
+
+            updateParticipantDropdown();
+        }
+
+        function updateParticipantDropdown() {
+            const eventId = document.getElementById('contributionEvent')?.value;
+            const eventParticipants = eventId ? 
+                participants.filter(p => p.eventId === eventId) : 
+                [];
+
+            const participantSelect = document.getElementById('contributionParticipant');
+            if (participantSelect) {
+                participantSelect.innerHTML = '<option value="">பங்கேற்பாளரைத் தேர்ந்தெடுக்கவும்</option>' +
+                    eventParticipants.map(p => 
+                        `<option value="${p.id}">${p.name} (${p.phone})</option>`
+                    ).join('');
+            }
+        }
+
+        function selectEvent(eventId) {
+            const reportEventSelect = document.getElementById('reportEvent');
+            if (reportEventSelect) {
+                reportEventSelect.value = eventId;
+            }
+            showTab('reports');
+            updateProgress();
+        }
+
+        function downloadTextFile(content, filename) {
+            const blob = new Blob([content], { type: 'text/plain; charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
